@@ -1,5 +1,7 @@
 // background.js
 let reloadCount = 0;
+let randomLimit = Math.random() * 10 + 20;
+console.log("randomLimit: ", randomLimit);
 let fiverrReloads = 0;
 // Function to reload the current tab
 function reloadTab() {
@@ -9,12 +11,14 @@ function reloadTab() {
     console.log("Fiverr reload count:", fiverrReloads);
     console.log(`tabs length: ${tabs}`);
     console.log(tabs[0].url.toString().startsWith("https://www.fiverr.com/"));
-    if (reloadCount >= 30) {
+    if (reloadCount >= randomLimit) {
       if (tabs[0].url.toString().startsWith("https://www.fiverr.com/")) {
         chrome.tabs.reload(tabs[0].id);
         fiverrReloads += 1;
       }
       reloadCount = 0;
+      randomLimit = Math.random() * 40 + 20;
+      console.log("randomLimit: ", randomLimit);
     }
   });
 }
